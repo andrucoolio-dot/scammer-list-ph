@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scammer List PH</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ff4444;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #a0a0ff;
+            opacity: 0.9;
+        }
+        
+        .warning {
+            background: rgba(255, 68, 68, 0.15);
+            border: 2px solid #ff4444;
+            color: #ffbbbb;
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .add-form {
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #ccc;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.3);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        button {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        button:hover {
+            background: #ff6666;
+            transform: translateY(-2px);
+        }
+        
+        .scammer-list {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .list-title {
+            font-size: 1.8rem;
+            color: #ffcc00;
+        }
+        
+        .search-box {
+            padding: 12px 20px;
+            width: 320px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        .scammer-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-left: 6px solid #ff4444;
+            transition: all 0.3s;
+        }
+        
+        .scammer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 68, 68, 0.2);
+        }
+        
+        .scammer-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ff8888;
+            margin-bottom: 8px;
+        }
+        
+        .scammer-gcash {
+            background: rgba(0, 255, 100, 0.15);
+            color: #00ff88;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        
+        .proof-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+        }
+        
+        .proof-link {
+            color: #a0d8ff;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        
+        .proof-link:hover {
+            text-decoration: underline;
+        }
+        
+        .description {
+            margin-top: 12px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .report-count {
+            background: #ff4444;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚠️ Scammer List PH</h1>
+            <p class="subtitle">Protecting Filipinos from Online Scammers</p>
+        </header>
+
+        <div class="warning">
+            ⚠️ This is a community-driven list. Always verify information before making any transaction. 
+            Report scammers responsibly and with solid proof.
+        </div>
+
+        <!-- Add New Scammer Form -->
+        <div class="add-form">
+            <h2 class="form-title">📝 Report a Scammer</h2>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="scammerName">Name of Scammer</label>
+                    <input type="text" id="scammerName" placeholder="Full name or known alias" required>
+                </div>
+                <div class="input-group">
+                    <label for="gcashInfo">GCash Number & Initials</label>
+                    <input type="text" id="gcashInfo" placeholder="0912-345-6789 | JD" required>
+                </div>
+                <div class="input-group">
+                    <label for="proof">Proof of Transaction (Link)</label>
+                    <input type="url" id="proof" placeholder="https://drive.google.com/... or screenshot link" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="description">Description / What Happened</label>
+                <textarea id="description" placeholder="Describe the scam, date of incident, amount involved, etc." required></textarea>
+            </div>
+            <button onclick="addScammer()">Submit Report</button>
+        </div>
+
+        <!-- Scammer List Section -->
+        <div class="scammer-list">
+            <div class="list-header">
+                <div>
+                    <h2 class="list-title">Reported Scammers</h2>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <input type="text" id="searchInput" class="search-box" placeholder="Search by name or GCash..." onkeyup="filterList()">
+                    <div class="report-count" id="count">0 Reports</div>
+                </div>
+            </div>
+            
+            <div id="scammerList">
+                <!-- Reports will be added here by JavaScript -->
+                <div class="empty-state">
+                    <p>No reports yet.<br>Be the first to submit a report above.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Scammer List PH • Community Initiative • Not affiliated with any government agency</p>
+            <p>Always exercise caution when transacting online.</p>
+        </footer>
+    </div>
+
+    <script>
+        let scammers = [];
+
+        // Load from localStorage when page loads
+        function loadScammers() {
+            const saved = localStorage.getItem('scammerListPH');
+            if (saved) {
+                scammers = JSON.parse(saved);
+            }
+            renderList();
+        }
+
+        // Save to localStorage
+        function saveScammers() {
+            localStorage.setItem('scammerListPH', JSON.stringify(scammers));
+        }
+
+        function addScammer() {
+            const name = document.getElementById('scammerName').value.trim();
+            const gcash = document.getElementById('gcashInfo').value.trim();
+            const proof = document.getElementById('proof').value.trim();
+            const description = document.getElementById('description').value.trim();
+
+            if (!name || !gcash || !proof || !description) {
+                alert("Please fill out all fields before submitting.");
+                return;
+            }
+
+            // Simple URL validation
+            if (!proof.startsWith('http')) {
+                alert("Proof must be a valid link starting with http/https");
+                return;
+            }
+
+            const newScammer = {
+                id: Date.now(),
+                name: name,
+                gcash: gcash,
+                proof: proof,
+                description: description,
+                date: new Date().toLocaleDateString('en-PH')
+            };
+
+            scammers.unshift(newScammer); // Add to the beginning
+            saveScammers();
+            renderList();
+
+            // Clear form
+            document.getElementById('scammerName').value = '';
+            document.getElementById('gcashInfo').value = '';
+            document.getElementById('proof').value = '';
+            document.getElementById('description').value = '';
+
+            alert("✅ Report submitted successfully! Thank you for helping protect others.");
+        }
+
+        function renderList(filteredScammers = null) {
+            const container = document.getElementById('scammerList');
+            const countEl = document.getElementById('count');
+            
+            const toRender = filteredScammers || scammers;
+
+            if (toRender.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p>No reports found.<br>Be the first to submit a report above.</p>
+                    </div>
+                `;
+                countEl.textContent = "0 Reports";
+                return;
+            }
+
+            let html = '';
+
+            toRender.forEach(scammer => {
+                html += `
+                    <div class="scammer-card">
+                        <div class="scammer-name">${scammer.name}</div>
+                        <div class="scammer-gcash">GCash: ${scammer.gcash}</div>
+                        <div class="proof-section">
+                            <strong>Proof:</strong> 
+                            <a href="\( {scammer.proof}" target="_blank" class="proof-link"> \){scammer.proof}</a>
+                        </div>
+                        <div class="description">
+                            <strong>What happened:</strong><br>
+                            ${scammer.description}
+                        </div>
+                        <small style="color:#888; margin-top:10px; display:block;">
+                            Reported on: ${scammer.date}
+                        </small>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            countEl.textContent = `\( {toRender.length} Report \){toRender.length !== 1 ? 's' : ''}`;
+        }
+
+        function filterList() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (!searchTerm) {
+                renderList();
+                return;
+            }
+
+            const filtered = scammers.filter(scammer => 
+                scammer.name.toLowerCase().includes(searchTerm) ||
+                scammer.gcash.toLowerCase().includes(searchTerm) ||
+                scammer.description.toLowerCase().includes(searchTerm)
+            );
+
+            renderList(filtered);
+        }
+
+        // Initialize the page
+        window.onload = function() {
+            loadScammers();
+        };
+    </script>
+</body>
+</html>
